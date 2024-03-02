@@ -3,14 +3,12 @@ import Header from "./partials/AdminHeader";
 import Left from "./partials/Left";
 
 function CategoryDash() {
-    // State hooks for managing category, form visibility, selected Category, and image preview
+    // State hooks for managing category, form visibility, selected Category preview
     const [category, setcategory] = useState([]);
     const CategoryArray = Array.isArray(category) ? category : [];
-
     const [showForm, setShowForm] = useState(false);
     const [selectedCategoryIndex, setSelectedCategoryIndex] = useState(null);
     const [nameError, setNameError] = useState('');
-    const [ratingError, setRatingError] = useState('');
     // State hooks for new Category and selected Category details
     const [newCategory, setnewCategory] = useState({
         name: '',
@@ -25,23 +23,11 @@ function CategoryDash() {
         const { name, value } = e.target;
 
         if (showForm) {
-            if (name === 'rating') {
-                const isValidRating = /^\d*\.?\d{0,1}$/.test(value);
-                if (isValidRating && parseFloat(value) >= 1 && parseFloat(value) <= 5) {
-                    setRatingError('');
-                    setnewCategory((prevCategory) => ({
-                        ...prevCategory,
-                        [name]: value,
-                    }));
-                } else {
-                    setRatingError('Please enter a valid rating between 1 and 5');
-                }
-            } else {
                 setnewCategory((prevCategory) => ({
                     ...prevCategory,
                     [name]: value,
                 }));
-            }
+            
         } else {
             setSelectedCategory((prevCategory) => ({
                 ...prevCategory,
@@ -104,7 +90,6 @@ function CategoryDash() {
             const CategoryToEdit = category[index];
 
             if (!CategoryToEdit) {
-                console.error('Invalid Category or image');
                 return;
             }
 
@@ -122,7 +107,7 @@ function CategoryDash() {
 
         try {
             if (!newCategory) {
-                console.error('Selected Category or image is null or undefined');
+                console.error('Selected Category  or undefined');
                 return;
             }
 
