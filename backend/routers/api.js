@@ -28,10 +28,10 @@ router.get('/products', productController.getAllProducts);
 router.post('/products', upload.single('image'), productController.addProduct);
 router.put('/products/:id',upload.single('image'), productController.updateProduct);
 router.delete('/products/:id', productController.deleteProduct);
-router.post('/category', categoryController.getAllCategory);
+router.get('/category', categoryController.getAllCategory);
 router.post('/category', categoryController.addCategory);
 router.put('/category/:id', categoryController.updateCategory);
-router.post('/category/:id', categoryController.deleteProduct);
+router.delete('/category/:id', categoryController.deleteProduct);
 
 
 

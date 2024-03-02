@@ -75,7 +75,7 @@ function CategoryDash() {
 
             console.log('Form Data:', formData);
             
-            const response = await fetch('/api/category', {
+            const response = await fetch('/api/category',{
                 method: 'POST',
                 body: formData,
             });
@@ -181,25 +181,24 @@ function CategoryDash() {
         };
     }, [imagePreviewUrl]);
 
-    const handleDeleteCategory = async (index) => {
-        try {
-            const CategoryId = category[index]._id;
+    // const handleDeleteCategory = async (index) => {
+    //     try {
+    //         const CategoryId = category[index]._id;
+    //         const response = await fetch(`/api/category/${CategoryId}`, {
+    //             method: 'DELETE',
+    //         });
 
-            const response = await fetch(`/api/category/${CategoryId}`, {
-                method: 'DELETE',
-            });
-
-            if (response.ok) {
-                const updatedcategory = [...category];
-                updatedcategory.splice(index, 1);
-                setcategory(updatedcategory);
-            } else {
-                console.error('Error deleting Category');
-            }
-        } catch (error) {
-            console.error('Error deleting Category', error);
-        }
-    };
+    //         if (response.ok) {
+    //             const updatedcategory = [...category];
+    //             updatedcategory.splice(index, 1);
+    //             setcategory(updatedcategory);
+    //         } else {
+    //             console.error('Error deleting Category');
+    //         }
+    //     } catch (error) {
+    //         console.error('Error deleting Category', error);
+    //     }
+    // };
 
     const fetchcategory = async () => {
         try {
@@ -287,7 +286,7 @@ function CategoryDash() {
                                                         <td>{Category.catname}</td>
                                                         <td>
                                                             <button onClick={() => handleEditCategory(index)} className="btn btn-primary btn-sm mr-2">Edit</button>
-                                                            <button onClick={() => handleDeleteCategory(index)} className="btn btn-danger btn-sm">Delete</button>
+                                                            {/* <button onClick={() => handleDeleteCategory(index)} className="btn btn-danger btn-sm">Delete</button> */}
                                                         </td>
                                                     </tr>
                                                 ))
