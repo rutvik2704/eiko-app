@@ -3,9 +3,9 @@ import Header from "./partials/AdminHeader";
 import Left from "./partials/Left";
 
 function CategoryDash() {
-    // State hooks for managing Categorys, form visibility, selected Category, and image preview
-    const [Categorys, setCategorys] = useState([]);
-    const CategoryArray = Array.isArray(Categorys) ? Categorys : [];
+    // State hooks for managing category, form visibility, selected Category, and image preview
+    const [category, setcategory] = useState([]);
+    const CategoryArray = Array.isArray(category) ? category : [];
     const [showForm, setShowForm] = useState(false);
     const [selectedCategoryIndex, setSelectedCategoryIndex] = useState(null);
     const [imagePreviewUrl, setImagePreviewUrl] = useState(null);
@@ -58,7 +58,6 @@ function CategoryDash() {
         } else {
             setNameError('');
         }
-
         return valid;
     };
 
@@ -75,8 +74,7 @@ function CategoryDash() {
             formData.append('name', newCategory.name);
 
             console.log('Form Data:', formData);
-
-
+            
             const response = await fetch('/api/category', {
                 method: 'POST',
                 body: formData,
@@ -84,7 +82,7 @@ function CategoryDash() {
 
             if (response.ok) {
                 const addedCategory = await response.json();
-                setCategorys([...Categorys, addedCategory]);
+                setcategory([...category, addedCategory]);
                 setShowForm(false);
 
                 // Reset form
@@ -103,7 +101,7 @@ function CategoryDash() {
 
     const handleEditCategory = (index) => {
         try {
-            const CategoryToEdit = Categorys[index];
+            const CategoryToEdit = category[index];
 
             if (!CategoryToEdit || !CategoryToEdit.image) {
                 console.error('Invalid Category or image');
@@ -154,9 +152,9 @@ function CategoryDash() {
             if (response.ok) {
                 const updatedCategory = await response.json();
                 console.log('Updated Category:', updatedCategory);
-                const updatedCategorys = [...Categorys];
-                updatedCategorys[selectedCategoryIndex] = updatedCategory;
-                setCategorys(updatedCategorys);
+                const updatedcategory = [...category];
+                updatedcategory[selectedCategoryIndex] = updatedCategory;
+                setcategory(updatedcategory);
                 setShowForm(false);
                 setSelectedCategory({
                     _id: updatedCategory._id,
@@ -185,16 +183,16 @@ function CategoryDash() {
 
     const handleDeleteCategory = async (index) => {
         try {
-            const CategoryId = Categorys[index]._id;
+            const CategoryId = category[index]._id;
 
             const response = await fetch(`/api/category/${CategoryId}`, {
                 method: 'DELETE',
             });
 
             if (response.ok) {
-                const updatedCategorys = [...Categorys];
-                updatedCategorys.splice(index, 1);
-                setCategorys(updatedCategorys);
+                const updatedcategory = [...category];
+                updatedcategory.splice(index, 1);
+                setcategory(updatedcategory);
             } else {
                 console.error('Error deleting Category');
             }
@@ -203,23 +201,23 @@ function CategoryDash() {
         }
     };
 
-    const fetchCategorys = async () => {
+    const fetchcategory = async () => {
         try {
-            const response = await fetch('/api/Categorys');
+            const response = await fetch('/api/category');
             if (response.ok) {
                 const data = await response.json();
-                setCategorys(data);
+                setcategory(data);
             } else {
-                console.error('Error fetching Categorys');
+                console.error('Error fetching category');
             }
         } catch (error) {
-            console.error('Error fetching Categorys', error);
+            console.error('Error fetching category', error);
         }
     };
     
 
     useEffect(() => {
-        fetchCategorys();
+        fetchcategory();
     }, []);
 
     useEffect(() => {
