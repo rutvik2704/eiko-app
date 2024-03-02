@@ -8,7 +8,6 @@ function CategoryDash() {
     const CategoryArray = Array.isArray(category) ? category : [];
     const [showForm, setShowForm] = useState(false);
     const [selectedCategoryIndex, setSelectedCategoryIndex] = useState(null);
-    const [imagePreviewUrl, setImagePreviewUrl] = useState(null);
     const [nameError, setNameError] = useState('');
     const [ratingError, setRatingError] = useState('');
     // State hooks for new Category and selected Category details
@@ -103,27 +102,13 @@ function CategoryDash() {
         try {
             const CategoryToEdit = category[index];
 
-            if (!CategoryToEdit || !CategoryToEdit.image) {
+            if (!CategoryToEdit) {
                 console.error('Invalid Category or image');
                 return;
             }
 
             setSelectedCategory(CategoryToEdit);
             setSelectedCategoryIndex(index);
-
-            if (typeof CategoryToEdit.image === 'string') {
-                setImagePreviewUrl(CategoryToEdit.image);
-            } else if (CategoryToEdit.image instanceof Blob || CategoryToEdit.image instanceof File) {
-                const imageUrl = URL.createObjectURL(CategoryToEdit.image);
-                setImagePreviewUrl(imageUrl);
-            } else {
-                console.error('Invalid image type');
-            }
-
-            setnewCategory({
-                image: null,
-                ...CategoryToEdit,
-            });
 
             setShowForm(true);
         } catch (error) {
@@ -135,7 +120,7 @@ function CategoryDash() {
         e.preventDefault();
 
         try {
-            if (!newCategory || !newCategory.image) {
+            if (!newCategory) {
                 console.error('Selected Category or image is null or undefined');
                 return;
             }
@@ -173,13 +158,7 @@ function CategoryDash() {
         }
     };
 
-    useEffect(() => {
-        return () => {
-            if (imagePreviewUrl) {
-                URL.revokeObjectURL(imagePreviewUrl);
-            }
-        };
-    }, [imagePreviewUrl]);
+    
 
     // const handleDeleteCategory = async (index) => {
     //     try {
@@ -282,8 +261,7 @@ function CategoryDash() {
                                             {CategoryArray.length > 0 ? (
                                                 CategoryArray.map((Category, index) => (
                                                     <tr key={index}>
-                                                        
-                                                        <td>{Category.catname}</td>
+                                                        <td>{Category.name}</td>
                                                         <td>
                                                             <button onClick={() => handleEditCategory(index)} className="btn btn-primary btn-sm mr-2">Edit</button>
                                                             {/* <button onClick={() => handleDeleteCategory(index)} className="btn btn-danger btn-sm">Delete</button> */}
