@@ -6,6 +6,7 @@ function CategoryDash() {
     // State hooks for managing category, form visibility, selected Category, and image preview
     const [category, setcategory] = useState([]);
     const CategoryArray = Array.isArray(category) ? category : [];
+
     const [showForm, setShowForm] = useState(false);
     const [selectedCategoryIndex, setSelectedCategoryIndex] = useState(null);
     const [nameError, setNameError] = useState('');
@@ -185,6 +186,7 @@ function CategoryDash() {
             if (response.ok) {
                 const data = await response.json();
                 setcategory(data);
+                console.log(setcategory);
             } else {
                 console.error('Error fetching category');
             }
@@ -192,12 +194,11 @@ function CategoryDash() {
             console.error('Error fetching category', error);
         }
     };
-    
-
     useEffect(() => {
         fetchcategory();
     }, []);
 
+     
     useEffect(() => {
         console.log('Component re-rendered. State:', newCategory);
     }, [newCategory]);

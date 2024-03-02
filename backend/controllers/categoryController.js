@@ -3,6 +3,7 @@ const Category = require("../models/Category");
 exports.getAllCategory = async (req, res) => {
     try {
         const Category = await Category.find();
+        console.log(Category);
         res.json(Category);
     } catch (error) {
         res.status(500).json({ error: error.message });
@@ -13,6 +14,7 @@ exports.addCategory = async(req,res)=>{
     try {
         const cat = new Category(req.body)
        const savedCategory = await cat.save();
+       console.log(savedCategory);
         res.json(savedCategory);
 
     } catch (error) {
