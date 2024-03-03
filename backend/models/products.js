@@ -9,7 +9,8 @@ const productSchema = new mongoose.Schema({
   image: String,
   published: Boolean,
   category: {
-    type: String,
+    type : mongoose.ObjectId,
+    ref:"category",
     required: true
   },
   subcategory: {

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Header from "./partials/AdminHeader";
 import Left from "./partials/Left";
-
+import { Modal } from "antd";
 function CategoryDash() {
     // State hooks for managing categories and form visibility
     const [categories, setCategories] = useState([]);
@@ -12,6 +12,8 @@ function CategoryDash() {
     });
     const [selectedCategory, setSelectedCategory] = useState(null);
     const [isEditing, setIsEditing] = useState();
+    const [visible, setVisible] = useState(false);
+  const [selected, setSelected] = useState(null);
 
     const validateForm = () => {
         let valid = true;
@@ -206,6 +208,17 @@ function CategoryDash() {
 
                                 </div>
                             )}
+                            <Modal
+              onCancel={() => setVisible(false)}
+              footer={null}
+              visible={visible}
+            >
+              <CategoryDash
+                value={isEditing}
+                setValue={setIsEditing}
+                handleSubmit={handleEditClick}
+              />
+            </Modal>
                         </div>
                     </div>
                 </div>

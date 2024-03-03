@@ -137,7 +137,6 @@ function SubCategoryDash() {
                         <Left />
                         <div className="col-md-8">
                             <h1>Subcategory Dashboard</h1>
-
                             <div>
                                 <button onClick={() => setShowForm(!showForm)} className="btn btn-success form-control my-3">
                                     {showForm ? 'Hide Form' : 'Add SubCategory'}

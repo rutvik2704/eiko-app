@@ -23,14 +23,17 @@ const upload = multer({
 
 router.post('/reg', regc.register);
 router.post('/logincheck', regc.logincheck);
+// products
 router.get('/products', productController.getAllProducts);
 router.post('/products', upload.single('image'), productController.addProduct);
 router.put('/products/:id',upload.single('image'), productController.updateProduct);
 router.delete('/products/:id', productController.deleteProduct);
+// catgories
 router.get('/categories', categoryController.getAllCategories);
 router.post('/categories', categoryController.addCategory);
 router.put('/categories/:id', categoryController.updateCategory);
 router.delete('/categories/:id', categoryController.deleteCategory);
+// subcatgories 
 router.get('/subcategories',subcategoryController.getAllSubCategories);
 router.post('/subcategories',subcategoryController.addSubCategories);
 router.put('/subcategories/:id',subcategoryController.updateSubCategories);

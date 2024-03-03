@@ -15,12 +15,12 @@ exports.getAllSubCategories = async (req, res) => {
 // Add a new category
 exports.addSubCategories = async (req, res) => {
   try {
-    const { name } = req.body;
+    const { name,catname} = req.body;
     if (!name) {
       return res.status(400).json({ message: 'SubCategory name is required.' });
     }
 
-    const newSubCategory = new SubCategory({ name });
+    const newSubCategory = new SubCategory({ name,catname});
     const savedSubCategory = await newSubCategory.save();
     res.json(savedSubCategory);
   } catch (error) {
