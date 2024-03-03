@@ -7,6 +7,7 @@ import Register from './components/admin/Register';
 import Admindash from './components/admin/AdminDash';
 import ProductDash from './components/admin/ProductDash';
 import CategoryDash from './components/admin/CatDash';
+import SubCategoryDash from './components/admin/SubCatDash';
 
 function App() {
   return (
@@ -19,8 +20,8 @@ function App() {
         <Route path='/dashboard' element={<Admindash />} />
         <Route path='/productdash' element={<ProductDash />} />
         <Route path='/categorydash' element={<CategoryDash />} />
+        <Route path='/Subcategorydash' element={<SubCategoryDash/>} />
 
-        
       </Routes>
     </BrowserRouter>
 

@@ -483,7 +483,8 @@ function ProductDash() {
                                                         }}
                                                         className="form-control"
                                                     >
-                                                        <option value="">Select a Category....</option>
+                                                    
+                                                    <option value="">Select a Category....</option>                                                   
                                                         <option value="Desserts">Desserts</option>
                                                         <option value="Food">Food</option>
                                                         <option value="Beverages">Beverages</option>

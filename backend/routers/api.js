@@ -3,7 +3,7 @@ const multer = require('multer');
 const regc = require('../controllers/regController');
 const productController = require('../controllers/productController');
 const categoryController = require('../controllers/categoryController');
-
+const subcategoryController = require('../controllers/subcategoryController')
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -31,6 +31,9 @@ router.get('/categories', categoryController.getAllCategories);
 router.post('/categories', categoryController.addCategory);
 router.put('/categories/:id', categoryController.updateCategory);
 router.delete('/categories/:id', categoryController.deleteCategory);
-
+router.get('/subcategories',subcategoryController.getAllSubCategories);
+router.post('/subcategories',subcategoryController.addSubCategories);
+router.put('/subcategories/:id',subcategoryController.updateSubCategories);
+router.delete('/subcategories/:id',subcategoryController.deleteSubategories);
 
 module.exports = router;
