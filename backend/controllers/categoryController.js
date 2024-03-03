@@ -1,55 +1,60 @@
-const Category = require("../models/Category");
+const Category = require('../models/category');
 
-exports.getAllCategory = async (req, res) => {
-    try {
-        const Category = await Category.find();
-        console.log(Category);
-        res.json(Category);
-    } catch (error) {
-        res.status(500).json({ error: error.message });
-    }
+// Get all categories
+exports.getAllCategories = async (req, res) => {
+  try {
+    const categories = await Category.find();
+    res.json(categories);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
 };
 
-exports.addCategory = async(req,res)=>{
-    try {
-        const cat = new Category(req.body)
-       const savedCategory = await cat.save();
-       console.log(savedCategory);
-        res.json(savedCategory);
-
-    } catch (error) {
-        console.error('Error adding product:', error);
-        res.status(500).json({ message: 'Internal Server Error' });
+// Add a new category
+exports.addCategory = async (req, res) => {
+  try {
+    const { name } = req.body;
+    if (!name) {
+      return res.status(400).json({ message: 'Category name is required.' });
     }
+
+    const newCategory = new Category({ name });
+    const savedCategory = await newCategory.save();
+    console.log(savedCategory);
+    res.json(savedCategory);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
 };
 
+// Update a category
 exports.updateCategory = async (req, res) => {
-    try {
-        const { id } = req.params;
-        const { name } = req.body; // Destructure subcategory from request body
+  try {
+    const { id } = req.params;
+    const { name } = req.body;
 
-        const updatedCatrgory = await Product.findByIdAndUpdate(
-            id,
-            { name }, // Add subcategory to the update object
-            { new: true }
-        );
+    const updatedCategory = await Category.findByIdAndUpdate(
+      id,
+      { name },
+      { new: true }
+    );
 
-        if (!updatedCatrgory) {
-            return res.status(404).json({ message: 'Product not found' });
-        }
-
-        res.json(updatedCatrgory);
-    } catch (error) {
-        console.error('Error updating product:', error);
-        res.status(500).json({ message: 'Internal Server Error' });
+    if (!updatedCategory) {
+      return res.status(404).json({ message: 'Category not found' });
     }
+
+    res.json(updatedCategory);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
 };
 
-exports.deleteProduct = async (req, res) => {
-    try {
-        await Cat.findByIdAndDelete(req.params.id);
-        res.json({ message: 'Category deleted successfully' });
-    } catch (error) {
-        res.status(500).json({ error: error.message });
-    }
+// Delete a category
+exports.deleteCategory = async (req, res) => {
+  try {
+    await Category.findByIdAndDelete(req.params.id);
+    res.json({ message: 'Category deleted successfully' });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
 };

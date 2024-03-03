@@ -5,7 +5,6 @@ const productController = require('../controllers/productController');
 const categoryController = require('../controllers/categoryController');
 
 
-
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, 'uploads/');
@@ -28,12 +27,10 @@ router.get('/products', productController.getAllProducts);
 router.post('/products', upload.single('image'), productController.addProduct);
 router.put('/products/:id',upload.single('image'), productController.updateProduct);
 router.delete('/products/:id', productController.deleteProduct);
-router.get('/category', categoryController.getAllCategory);
-router.post('/category', categoryController.addCategory);
-router.put('/category/:id', categoryController.updateCategory);
-router.delete('/category/:id', categoryController.deleteProduct);
-
-
+router.get('/categories', categoryController.getAllCategories);
+router.post('/categories', categoryController.addCategory);
+router.put('/categories/:id', categoryController.updateCategory);
+router.delete('/categories/:id', categoryController.deleteCategory);
 
 
 module.exports = router;
