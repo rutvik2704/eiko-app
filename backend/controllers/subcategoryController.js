@@ -12,18 +12,20 @@ exports.getAllSubCategories = async (req, res) => {
   }
 };
 
-// Add a new category
+// Add a new subcategory
 exports.addSubCategories = async (req, res) => {
   try {
-    const { name,catname} = req.body;
+    const { name } = req.body;
     if (!name) {
       return res.status(400).json({ message: 'SubCategory name is required.' });
     }
 
-    const newSubCategory = new SubCategory({ name,catname});
+    const newSubCategory = new subCategory({ name });
     const savedSubCategory = await newSubCategory.save();
+    console.log(savedSubCategory);
     res.json(savedSubCategory);
   } catch (error) {
+    console.log(error);
     res.status(500).json({ error: error.message });
   }
 };
@@ -34,7 +36,7 @@ exports.updateSubCategories = async (req, res) => {
     const { id } = req.params;
     const { name } = req.body;
 
-    const updatedSubCategory = await SubCategory.findByIdAndUpdate(
+    const updatedSubCategory = await subCategory.findByIdAndUpdate(
       id,
       { name },
       { new: true }
@@ -53,7 +55,7 @@ exports.updateSubCategories = async (req, res) => {
 // Delete a category
 exports.deleteSubategories = async (req, res) => {
   try {
-    await SubCategory.findByIdAndDelete(req.params.id);
+    await subCategory.findByIdAndDelete(req.params.id);
     res.json({ message: 'SubCategory deleted successfully' });
   } catch (error) {
     res.status(500).json({ error: error.message });

@@ -149,7 +149,7 @@ function SubCategoryDash() {
                                         <div className="card-body">
                                             <form onSubmit={handleAddSubCategory}>
                                                 <div className="form-group">
-                                                    <label>Sname:</label>
+                                                    <label>name:</label>
                                                     <input
                                                         type="text"
                                                         name="name"
@@ -177,7 +177,7 @@ function SubCategoryDash() {
                                     <table className='table table-dark table-hover'>
                                         <thead>
                                             <tr>
-                                                <th>Sname</th>
+                                                <th>name</th>
                                                 <th>Actions</th>
                                             </tr>
                                         </thead>
