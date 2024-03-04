@@ -12,7 +12,7 @@ exports.getAllSubCategories = async (req, res) => {
   }
 };
 
-// Add a new subcategory
+// Add a new category
 exports.addSubCategories = async (req, res) => {
   try {
     const { name } = req.body;

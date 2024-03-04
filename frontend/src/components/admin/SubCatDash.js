@@ -26,6 +26,7 @@ function SubCategoryDash() {
 
 
     const handleInputChange = (e) => {
+        console.log("okk");
         const { name, value } = e.target;
 
         setNewSubCategory((prevSubCategory) => ({
@@ -35,6 +36,7 @@ function SubCategoryDash() {
     };
 
     const handleAddSubCategory = async (e) => {
+        console.log("okkkkkkk");
         e.preventDefault();
         console.log('Adding/Editing Subcategory...');
 
