@@ -7,7 +7,7 @@ function SubCategoryDash() {
     const [Subcategories, setSubCategories] = useState([]);
     const [showForm, setShowForm] = useState(false);
     const [nameError, setNameError] = useState('');
-    const [category,setCategory]=useState([]);
+    const [category, setCategory] = useState([]);
     const [newSubCategory, setNewSubCategory] = useState({
         name: '',
     });
@@ -129,7 +129,7 @@ function SubCategoryDash() {
     };
 
     useEffect(() => {
-        fetchSubCategories();   
+        fetchSubCategories();
         console.log(Subcategories);
     }, []);
 
@@ -154,7 +154,7 @@ function SubCategoryDash() {
                                         <div className="card-body">
                                             <form onSubmit={handleAddSubCategory}>
                                                 <div className="form-group">
-                                                    <label>name:</label>
+                                                    <label>sname:</label>
                                                     <input
                                                         type="text"
                                                         name="name"
@@ -194,7 +194,7 @@ function SubCategoryDash() {
                                                         <td>{Subcategory.name}</td>
                                                         <td>
                                                             <button className='btn btn-success me-2' onClick={() => handleEditClick(Subcategory)}>Edit</button>
-                                                            <button className='btn btn-danger' onClick={() => handleDeleteClick(Subcategory._id)}>Delete</button>
+                                                            <button className='btn btn-danger me-4' onClick={() => handleDeleteClick(Subcategory._id)}>Delete</button>
                                                         </td>
                                                     </tr>
                                                 ))

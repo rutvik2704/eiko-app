@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Header from "./partials/AdminHeader";
 import Left from "./partials/Left";
+import SubCategoryDash from './SubCatDash';
 import { Modal } from "antd";
 function CategoryDash() {
     // State hooks for managing categories and form visibility
@@ -125,11 +126,16 @@ function CategoryDash() {
             }
         }
     };
+    const addSubcategoies =()=>{
+        console.log("okkkkk")
+        setShowForm(!showForm);
+    }
 
     useEffect(() => {
         fetchCategories();
     }, []);
 
+    
     return (
         <>
             <Header />
@@ -175,7 +181,8 @@ function CategoryDash() {
                                 )}
                             </div>
 
-                            {!showForm && (
+                            {!showForm && <SubCategoryDash /> &&
+                            (
                                 <div>
                                     <h2>Category List</h2>
                                     <table className='table table-dark table-hover'>
@@ -192,7 +199,8 @@ function CategoryDash() {
                                                         <td>{category.name}</td>
                                                         <td>
                                                             <button className='btn btn-success me-2' onClick={() => handleEditClick(category)}>Edit</button>
-                                                            <button className='btn btn-danger' onClick={() => handleDeleteClick(category._id)}>Delete</button>
+                                                            <button className='btn btn-danger me-2' onClick={() => handleDeleteClick(category._id)}>Delete</button>
+                                                            <button className="btn btn-success" onClick={()=>addSubcategoies()}> SubCategory Add</button>
                                                         </td>
                                                     </tr>
                                                 ))
