@@ -16,9 +16,11 @@ function CategoryDash() {
         sname: '',
     });
     const [selectedCategory, setSelectedCategory] = useState(null);
+    const [selectedSubCategory, setSelectedSubCategory] = useState(null);
+    
     const [isEditing, setIsEditing] = useState();
     const [visible, setVisible] = useState(false);
-  const [selected, setSelected] = useState(null);
+    const [selected, setSelected] = useState(null);
 
     const validateForm = () => {
         let valid = true;
