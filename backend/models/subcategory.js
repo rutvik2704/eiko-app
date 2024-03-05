@@ -1,12 +1,16 @@
-module.exports = (sequelize, DataTypes) => {
-    const SubCategory = sequelize.define('SubCategory', {
-      categoryId: DataTypes.INTEGER,
-      name: DataTypes.STRING
-    }, {});
-    SubCategory.associate = function(models) {
-      // associations can be defined here
-      models.SubCategory.belongsTo(models.category, { foreignKey: 'categoryId' });
-  
-    };
-    return SubCategory;
-  };
+const mongoose = require("mongoose")
+
+const subcategorySchema = new mongoose.Schema({
+    catname : {
+        type : mongoose.Schema.Types.ObjectId,
+        ref:"category",
+        required:true
+    },
+    name : {
+        type : String,
+        required:true,
+        unique:true
+    }
+});
+
+module.exports=new mongoose.model("Subcategory",subcategorySchema)

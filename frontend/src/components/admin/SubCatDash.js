@@ -7,7 +7,6 @@ function SubCategoryDash() {
     const [Subcategories, setSubCategories] = useState([]);
     const [showForm, setShowForm] = useState(false);
     const [nameError, setNameError] = useState('');
-    const [category, setCategory] = useState([]);
     const [newSubCategory, setNewSubCategory] = useState({
         name: '',
     });

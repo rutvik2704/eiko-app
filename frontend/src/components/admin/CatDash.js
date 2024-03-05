@@ -6,10 +6,14 @@ import { Modal } from "antd";
 function CategoryDash() {
     // State hooks for managing categories and form visibility
     const [categories, setCategories] = useState([]);
+    const [subcategories, setSubCategories] = useState([]);
     const [showForm, setShowForm] = useState(false);
     const [nameError, setNameError] = useState('');
     const [newCategory, setNewCategory] = useState({
         name: '',
+    });
+    const [newSubCategory, setNewSubCategory] = useState({
+        sname: '',
     });
     const [selectedCategory, setSelectedCategory] = useState(null);
     const [isEditing, setIsEditing] = useState();
@@ -129,6 +133,7 @@ function CategoryDash() {
     const addSubcategoies =()=>{
         console.log("okkkkk")
         setShowForm(!showForm);
+
     }
 
     useEffect(() => {
@@ -189,6 +194,7 @@ function CategoryDash() {
                                         <thead>
                                             <tr>
                                                 <th>Name</th>
+                                                <th>sname</th>
                                                 <th>Actions</th>
                                             </tr>
                                         </thead>
@@ -197,6 +203,7 @@ function CategoryDash() {
                                                 categories.map((category) => (
                                                     <tr key={category._id}>
                                                         <td>{category.name}</td>
+                                                        <td>{subcategories.name}</td>
                                                         <td>
                                                             <button className='btn btn-success me-2' onClick={() => handleEditClick(category)}>Edit</button>
                                                             <button className='btn btn-danger me-2' onClick={() => handleDeleteClick(category._id)}>Delete</button>
@@ -206,7 +213,7 @@ function CategoryDash() {
                                                 ))
                                             ) : (
                                                 <tr>
-                                                    <td colSpan="2">No categories found</td>
+                                                    <td colSpan="3">No categories found</td>
                                                 </tr>
                                             )}
                                         </tbody>
