@@ -5,9 +5,9 @@ const Category = require('../models/category');
 exports.getAllSubCategories = async (req, res) => {
   try {
     const categories = await Category.find();
-    const Subcategories = await subCategory.find();
+    const Subcategories = await subCategory.aggregate([{ $lookup: { from: "categories", localField: "catid", foreignField: "_id", as: "Category" } }]);
     console.log(Subcategories)
-    res.render("Subcategories",{catdata:categories});
+    res.render("Subcategories",{catdata:categories,subdata:Subcategories});
     res.json(Subcategories);
   } catch (error) {
     console.log(error);

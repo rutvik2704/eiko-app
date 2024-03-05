@@ -15,7 +15,7 @@ function ProductDash() {
     const [ratingError, setRatingError] = useState('');
     const [priceError, setPriceError] = useState('');
     const [offPriceError, setOffPriceError] = useState('');
-    const [category, setCategory] = useState([]); // State for category
+    const [category, setCategory] = useState(''); // State for category
     const [subCategory, setSubCategory] = useState('');
     const [subCategories, setSubCategories] = useState([]); // State for subcategories
 
@@ -483,8 +483,7 @@ function ProductDash() {
                                                         }}
                                                         className="form-control"
                                                     >
-                                                    
-                                                    <option value="">Select a Category....</option>                                                   
+                                                        <option value="">Select a Category....</option>
                                                         <option value="Desserts">Desserts</option>
                                                         <option value="Food">Food</option>
                                                         <option value="Beverages">Beverages</option>
