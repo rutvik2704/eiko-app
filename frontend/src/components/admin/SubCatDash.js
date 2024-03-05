@@ -7,6 +7,7 @@ function SubCategoryDash() {
     const [Subcategories, setSubCategories] = useState([]);
     const [showForm, setShowForm] = useState(false);
     const [nameError, setNameError] = useState('');
+    const [category,setCategory]=useState([]);
     const [newSubCategory, setNewSubCategory] = useState({
         name: '',
     });
@@ -88,6 +89,7 @@ function SubCategoryDash() {
             const response = await fetch('/api/subcategories');
             if (response.ok) {
                 const data = await response.json();
+                console.log('data');
                 setSubCategories(data);
             } else {
                 console.error('Error fetching Subcategories');
@@ -127,7 +129,8 @@ function SubCategoryDash() {
     };
 
     useEffect(() => {
-        fetchSubCategories();
+        fetchSubCategories();   
+        console.log(Subcategories);
     }, []);
 
     return (
@@ -159,6 +162,7 @@ function SubCategoryDash() {
                                                         onChange={handleInputChange}
                                                         className="form-control"
                                                     />
+
                                                     {nameError && <div className="text-danger">{nameError}</div>}
                                                 </div>
                                                 <button

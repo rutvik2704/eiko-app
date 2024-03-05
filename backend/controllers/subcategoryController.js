@@ -1,13 +1,16 @@
 const subCategory = require('../models/subcategory');
+const Category = require('../models/category');
 
 // Get all categories
 exports.getAllSubCategories = async (req, res) => {
   try {
     const categories = await Category.find();
     const Subcategories = await subCategory.find();
+    console.log(Subcategories)
     res.render("Subcategories",{catdata:categories});
     res.json(Subcategories);
   } catch (error) {
+    console.log(error);
     res.status(500).json({ error: error.message });
   }
 };

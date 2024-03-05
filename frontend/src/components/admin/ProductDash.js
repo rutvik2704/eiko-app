@@ -15,7 +15,7 @@ function ProductDash() {
     const [ratingError, setRatingError] = useState('');
     const [priceError, setPriceError] = useState('');
     const [offPriceError, setOffPriceError] = useState('');
-    const [category, setCategory] = useState(''); // State for category
+    const [category, setCategory] = useState([]); // State for category
     const [subCategory, setSubCategory] = useState('');
     const [subCategories, setSubCategories] = useState([]); // State for subcategories
 
