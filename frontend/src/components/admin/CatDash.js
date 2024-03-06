@@ -135,6 +135,11 @@ function CategoryDash() {
     const addSubcategoies =()=>{
         console.log("okkkkk")
         setShowForm(!showForm);
+        try{ 
+            const subcategory = await fetch(`/api/subcategories/`,{
+                method:'Post',
+            })
+        }
 
     }
 
