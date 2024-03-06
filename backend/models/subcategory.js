@@ -1,7 +1,7 @@
 const mongoose = require("mongoose")
 
 const subcategorySchema = new mongoose.Schema({
-    catname : {
+    catid : {
         type : mongoose.Schema.Types.ObjectId,
         ref:"category",
         required:true

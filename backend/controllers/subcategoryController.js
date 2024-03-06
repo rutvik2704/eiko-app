@@ -22,7 +22,6 @@ exports.addSubCategories = async (req, res) => {
     if (!name) {
       return res.status(400).json({ message: 'SubCategory name is required.' });
     }
-
     const newSubCategory = new subCategory({ name });
     const savedSubCategory = await newSubCategory.save();
     console.log(savedSubCategory);
@@ -56,7 +55,7 @@ exports.updateSubCategories = async (req, res) => {
 };
 
 // Delete a category
-exports.deleteSubategories = async (req, res) => {
+exports.deleteSubCategories = async (req, res) => {
   try {
     await subCategory.findByIdAndDelete(req.params.id);
     res.json({ message: 'SubCategory deleted successfully' });
