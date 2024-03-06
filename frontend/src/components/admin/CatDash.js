@@ -17,7 +17,7 @@ function CategoryDash() {
     });
     const [selectedCategory, setSelectedCategory] = useState(null);
     const [selectedSubCategory, setSelectedSubCategory] = useState(null);
-    
+
     const [isEditing, setIsEditing] = useState();
     const [visible, setVisible] = useState(false);
     const [selected, setSelected] = useState(null);
@@ -132,22 +132,23 @@ function CategoryDash() {
             }
         }
     };
-    const addSubcategoies =()=>{
-        console.log("okkkkk")
+    const addSubcategoies = async () => {
         setShowForm(!showForm);
-        try{ 
-            const subcategory = await fetch(`/api/subcategories/`,{
-                method:'Post',
-            })
-        }
 
+        try {
+            const subcategory = await fetch(`/api/subcategories/`, {
+                method: 'Post',
+            })
+        } catch (error) {
+            console.error(error);
+        }
     }
 
     useEffect(() => {
         fetchCategories();
     }, []);
 
-    
+
     return (
         <>
             <Header />
@@ -194,53 +195,53 @@ function CategoryDash() {
                             </div>
 
                             {!showForm && <SubCategoryDash /> &&
-                            (
-                                <div>
-                                    <h2>Category List</h2>
-                                    <table className='table table-dark table-hover'>
-                                        <thead>
-                                            <tr>
-                                                <th>Name</th>
-                                                <th>sname</th>
-                                                <th>Actions</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            {categories.length > 0 ? (
-                                                categories.map((category) => (
-                                                    <tr key={category._id}>
-                                                        <td>{category.name}</td>
-                                                        <td>{subcategories.name}</td>
-                                                        <td>
-                                                            <button className='btn btn-success me-2' onClick={() => handleEditClick(category)}>Edit</button>
-                                                            <button className='btn btn-danger me-2' onClick={() => handleDeleteClick(category._id)}>Delete</button>
-                                                            <button className="btn btn-success" onClick={()=>addSubcategoies()}> SubCategory Add</button>
-                                                        </td>
-                                                    </tr>
-                                                ))
-                                            ) : (
+                                (
+                                    <div>
+                                        <h2>Category List</h2>
+                                        <table className='table table-dark table-hover'>
+                                            <thead>
                                                 <tr>
-                                                    <td colSpan="3">No categories found</td>
+                                                    <th>Name</th>
+                                                    <th>sname</th>
+                                                    <th>Actions</th>
                                                 </tr>
-                                            )}
-                                        </tbody>
-                                    </table>
+                                            </thead>
+                                            <tbody>
+                                                {categories.length > 0 ? (
+                                                    categories.map((category) => (
+                                                        <tr key={category._id}>
+                                                            <td>{category.name}</td>
+                                                            <td>{subcategories.name}</td>
+                                                            <td>
+                                                                <button className='btn btn-success me-2' onClick={() => handleEditClick(category)}>Edit</button>
+                                                                <button className='btn btn-danger me-2' onClick={() => handleDeleteClick(category._id)}>Delete</button>
+                                                                <button className="btn btn-success" onClick={() => addSubcategoies()}> SubCategory Add</button>
+                                                            </td>
+                                                        </tr>
+                                                    ))
+                                                ) : (
+                                                    <tr>
+                                                        <td colSpan="3">No categories found</td>
+                                                    </tr>
+                                                )}
+                                            </tbody>
+                                        </table>
 
 
 
-                                </div>
-                            )}
+                                    </div>
+                                )}
                             <Modal
-              onCancel={() => setVisible(false)}
-              footer={null}
-              visible={visible}
-            >
-              <CategoryDash
-                value={isEditing}
-                setValue={setIsEditing}
-                handleSubmit={handleEditClick}
-              />
-            </Modal>
+                                onCancel={() => setVisible(false)}
+                                footer={null}
+                                visible={visible}
+                            >
+                                <CategoryDash
+                                    value={isEditing}
+                                    setValue={setIsEditing}
+                                    handleSubmit={handleEditClick}
+                                />
+                            </Modal>
                         </div>
                     </div>
                 </div>
