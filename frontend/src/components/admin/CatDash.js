@@ -17,7 +17,6 @@ function CategoryDash() {
     });
     const [selectedCategory, setSelectedCategory] = useState(null);
     const [selectedSubCategory, setSelectedSubCategory] = useState(null);
-
     const [isEditing, setIsEditing] = useState();
     const [visible, setVisible] = useState(false);
     const [selected, setSelected] = useState(null);

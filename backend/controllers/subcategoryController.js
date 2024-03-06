@@ -1,28 +1,28 @@
 const subCategory = require('../models/subcategory');
 const Category = require('../models/category');
 
-// Get all categories
+// Get all subcategories
 exports.getAllSubCategories = async (req, res) => {
   try {
     const categories = await Category.find();
     const Subcategories = await subCategory.aggregate([{ $lookup: { from: "categories", localField: "catid", foreignField: "_id", as: "Category" } }]);
     console.log(Subcategories)
-    res.render("Subcategories",{catdata:categories,subdata:Subcategories});
-    res.json(Subcategories);
+    res.render("Subcategories", { catdata: categories, subdata: Subcategories });
+    res.json(Subcategories,{catdata:categories});
   } catch (error) {
     console.log(error);
     res.status(500).json({ error: error.message });
   }
 };
 
-// Add a new category
+// Add a new subcategory
 exports.addSubCategories = async (req, res) => {
   try {
-    const { name } = req.body;
-    if (!name) {
+    const { sname } = req.body;
+    if (!sname) {
       return res.status(400).json({ message: 'SubCategory name is required.' });
     }
-    const newSubCategory = new subCategory({ name });
+    const newSubCategory = new subCategory({ sname });
     const savedSubCategory = await newSubCategory.save();
     console.log(savedSubCategory);
     res.json(savedSubCategory);
@@ -32,15 +32,15 @@ exports.addSubCategories = async (req, res) => {
   }
 };
 
-// Update a category
+// Update a subcategory
 exports.updateSubCategories = async (req, res) => {
   try {
     const { id } = req.params;
-    const { name } = req.body;
+    const { sname } = req.body;
 
     const updatedSubCategory = await subCategory.findByIdAndUpdate(
       id,
-      { name },
+      { sname },
       { new: true }
     );
 
@@ -54,7 +54,7 @@ exports.updateSubCategories = async (req, res) => {
   }
 };
 
-// Delete a category
+// Delete a subcategory
 exports.deleteSubCategories = async (req, res) => {
   try {
     await subCategory.findByIdAndDelete(req.params.id);
